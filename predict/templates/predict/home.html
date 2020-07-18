@@ -1,0 +1,24 @@
+{% extends "predict/base.html" %}
+
+{% block content %}
+
+<br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+<div class="row justify-content-center mt-5">
+        <div class="col-md-7 text-center">
+
+                 <h1>Welcome to Stutor</h1>
+                 <h2>Predict Your Students Peformance</h2>
+            <p>Anyday, Anytime, Anywhere!</p>
+            {% if not request.user.is_authenticated %}
+        <a role="button" class="btn btn-primary btn-lg" href="{% url 'signup' %}">Predict</a>
+        </div>
+    </div>
+{%else%}
+<a role="button" class="btn btn-primary btn-lg" href="{% url 'predict_result' %}">Predict</a>
+{%endif%}
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends "predict/base.html" %}
+
+{% block content %}
+<div class="row justify-content-center mt-2">
+<div class="container text-center">
+<form method="POST" > 
+    {% csrf_token %} 
+    <fieldset class="form-group">
+				<legend class="border-bottom mb-4">
+					Predict Result
+				</legend>
+    {{ form.as_p }} 
+    </fieldset>
+    <button class="btn btn-outline-info" type="submit">Predict
+	</button> 
+</form> 
+</div>
+</div>
+
+{% endblock %}

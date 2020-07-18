@@ -1,0 +1,13 @@
+{% extends "predict/base.html" %}
+
+{% block content %}
+
+	<h1>Result Page! </h1>
+    <h2> Hey {{ student_id }} </h2>
+    <h2> Your grade is {{ G3 }}</h2>
+
+    <div style="padding: 20px">
+        <a href="{% url 'predict_result' %}" style="padding: 20px; border:rgb(133, 86, 86) 1px solid"> TRY AGAIN</a>
+    </div>
+
+{% endblock %}
