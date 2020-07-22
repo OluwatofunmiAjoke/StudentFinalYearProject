@@ -29,5 +29,6 @@ class PredictModel(models.Model):
 	famrel = models.CharField(max_length=1,choices = famrel)
 	G1 = models.DecimalField(max_digits=5, decimal_places=2)
 	G2 = models.DecimalField(max_digits=5, decimal_places=2)
+	G3 = models.FloatField()
 	def __str__(self): 
 		return self.title 

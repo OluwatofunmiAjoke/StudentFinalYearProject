@@ -68,8 +68,9 @@ def predict_result(request):
 		# this is where the machine learning model makes a prediction
 
 		global G3
-		G3 = PredictConfig.loaded_model.predict(input_data)
-		
+		form.instance.G3 = PredictConfig.loaded_model.predict(input_data)
+		G3=form.instance.G3
+		form.save()
 		return redirect('result', student_id = student_id)
 			
 	else:
