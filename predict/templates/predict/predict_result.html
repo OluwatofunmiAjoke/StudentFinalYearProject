@@ -1,20 +1,119 @@
 {% extends "predict/base.html" %}
 
 {% block content %}
+<body class="bod">
 <div class="row justify-content-center mt-2">
 <div class="container text-center">
-<form method="POST" > 
-    {% csrf_token %} 
     <fieldset class="form-group">
-				<legend class="border-bottom mb-4">
-					Predict Result
-				</legend>
-    {{ form.as_p }} 
+                <legend class="border-bottom mb-0">
+                    <h4 style="font-size: 50px; color: #17a2b8">Predict Result</h4>
+                </legend>
     </fieldset>
-    <button class="btn btn-outline-info" type="submit">Predict
-	</button> 
+<form method="POST" novalidate > 
+    {% csrf_token %} 
+    <h4> <strong>Student Identity</strong></h4>
+    <div class="form-group" style="padding:20px; box-shadow: 0 0 3px black; ">    
+        <div class="form-row">
+            <div class="form-group col-md-6" >
+                <label>First Name</label>
+                    {{form.first_name}}
+                    {{form.errors.first_name}}
+                   
+            </div>
+            <div class="form-group col-md-6">
+                <label>Last Name</label>
+                    {{form.last_name}}
+                    {{form.errors.last_name}}
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <label>Student ID</label>
+                    {{form.student_id}}
+                    {{form.errors.student_id}}
+            </div>
+            <div class="form-group col-md-4">
+                <label>Gender</label>
+                    {{form.gender}}
+                    {{form.errors.gender}}
+            </div>
+            <div class="form-group col-md-4">
+                <label>Age</label>
+                    {{form.age}}
+                    {{form.errors.age}}
+            </div>
+        </div>
+    </div>
+    
+    <br>
+
+    <h4> <strong>Family Background</strong></h4>
+    <div class="form-group" style="padding:20px; box-shadow: 0 0 3px black; ">
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label>Parental Status</label>
+                    {{form.pstatus}}
+                    {{form.errors.pstatus}}
+            </div>
+            <div class="form-group col-md-6">
+                <label>Level of Relationship with Family Members</label>
+                    {{form.famrel}}
+                    {{form.errors.famrel}}
+            </div>
+        </div>
+    </div>
+
+    <br>
+
+    <h4> <strong>Student Behaviour</strong></h4>
+    <div class="form-group" style="padding:20px; box-shadow: 0 0 3px black; ">
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label>Intention to pursue higher education</label>
+                    {{form.higher}}
+                    {{form.errors.higher}}
+            </div>
+            <div class="form-group col-md-6">
+                <label>Alcohol consumption on weekdays</label>
+                    {{form.dalc}}
+                    {{form.errors.dalc}}
+            </div>
+        </div>
+    </div>
+
+    <br>
+
+    <h4><strong>Prior Academic Performance</strong></h4>
+    <div class="form-group" style="padding:20px; box-shadow: 0 0 3px black; ">
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <label>Number of failures</label>
+                    {{form.failures}}
+                    {{form.errors.failures}}
+            </div>
+            <div class="form-group col-md-4">
+                <label>First Period Grade</label>
+                    {{form.G1}}
+                <small id="passwordHelpBlock" class="form-text text-muted">Grades should range between 0-20
+                </small>
+                {{form.errors.G1}}
+            </div>
+            <div class="form-group col-md-4">
+                <label>Second Period Grade</label>
+                    {{form.G2}}
+                <small id="passwordHelpBlock" class="form-text text-muted">Grades should range between 0-20
+                </small>
+                {{form.errors.G2}}
+            </div>
+        </div>
+    </div>
+
+    <br>
+   
+    <button class="btn btn-outline-info btn-lg btn-block" type="submit" >Predict</button> 
+	
 </form> 
 </div>
 </div>
-
+</body>
 {% endblock %}

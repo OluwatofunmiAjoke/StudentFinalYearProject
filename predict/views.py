@@ -29,52 +29,57 @@ def home(request):
 @login_required
 def predict_result(request):
 	if request.method == 'POST':
+		form = MyPredictForm(request.POST)
 		# create an instance of the form
-		form = MyPredictForm(request.POST, request.FILES)
-		#get form data
-		student_id=request.POST['student_id']
-		fname=request.POST['first_name']
-		lname=request.POST['last_name']
-		age=request.POST['age']
-		sex=request.POST['gender']
-		failures=request.POST['failures']
-		pstatus=request.POST['pstatus']
-		dalc=request.POST['dalc']
-		higher=request.POST['higher']
-		famrel=request.POST['famrel']
-		G1=request.POST['G1']
-		G2=request.POST['G2']
+		if form.is_valid():
+		
+			#get form data
+			student_id=request.POST['student_id']
+			fname=request.POST['first_name']
+			lname=request.POST['last_name']
+			age=request.POST['age']
+			sex=request.POST['gender']
+			failures=request.POST['failures']
+			pstatus=request.POST['pstatus']
+			dalc=request.POST['dalc']
+			higher=request.POST['higher']
+			famrel=request.POST['famrel']
+			G1=request.POST['G1']
+			G2=request.POST['G2']
 
-		#transform into input suitable for ML model
-		if sex =='f':
-			sex=1
-		else:
-			sex=0
+			#transform into input suitable for ML model
+			if sex =='f':
+				sex=1
+			else:
+				sex=0
 
-		if higher == 'y':
-			higher=1
-		else:
-			higher=0
+			if higher == 'y':
+				higher=1
+			else:
+				higher=0
 
-		if pstatus == 'A':
-			pstatus=0
-		else:
-			pstatus=1
+			if pstatus == 'A':
+				pstatus=0
+			else:
+				pstatus=1
 
-		import pickle
-		#input data
-		input_data=[[failures,G1,G2,dalc,famrel,sex,higher,pstatus]]
-		#importing model
-		# this is where the machine learning model makes a prediction
+			import pickle
+			#input data
+			input_data=[[failures,G1,G2,dalc,famrel,sex,higher,pstatus]]
+			#importing model
+			# this is where the machine learning model makes a prediction
 
-		global G3
-		form.instance.G3 = PredictConfig.loaded_model.predict(input_data)
-		G3=form.instance.G3
-		form.save()
-		return redirect('result', student_id = student_id)
+			global G3
+			form.instance.G3 = PredictConfig.loaded_model.predict(input_data)
+			G3=form.instance.G3
+			form.save()
+			return redirect('result', student_id = student_id)
+		# else:
+			
 			
 	else:
-		form =  MyPredictForm(request.POST)
+
+		form =  MyPredictForm()
 
 	# return render(request, 'predict/predict_result.html', {'form' : form})
 	return render(request, 'predict/predict_result.html', {'form': form})
@@ -89,13 +94,15 @@ def result(request, student_id):
 
 	return render(request, 'predict/result.html', context)
 
-@login_required
+# @login_required
 def about(request):
 	return render(request, 'predict/about.html')
 
 @login_required
 def history(request):
-	return render(request, 'predict/history.html')
+	query = PredictModel.objects.all('username')
+
+	return render(request, 'predict/history.html',{'query': query})
  
 def signup(request):
 	if request.method == 'POST':

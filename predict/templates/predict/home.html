@@ -2,23 +2,43 @@
 
 {% block content %}
 
-<br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-<div class="row justify-content-center mt-5">
-        <div class="col-md-7 text-center">
 
-                 <h1>Welcome to Stutor</h1>
-                 <h2>Predict Your Students Peformance</h2>
-            <p>Anyday, Anytime, Anywhere!</p>
-            {% if not request.user.is_authenticated %}
-        <a role="button" class="btn btn-primary btn-lg" href="{% url 'signup' %}">Predict</a>
-        </div>
-    </div>
-{%else%}
-<a role="button" class="btn btn-primary btn-lg" href="{% url 'predict_result' %}">Predict</a>
-{%endif%}
+<body class="intro">
+    <br>
+    <br>
+    <br>
+    <!--Mask-->
+        
+            <div class="mask rgba-white-strong">
+
+                <div class="container-fluid d-flex align-items-center justify-content-center h-100">
+
+                    <div class="row d-flex justify-content-center text-center mt-5">
+
+                        <div class="col-md-12">
+
+                            <!-- Heading -->
+                            <h2 class="display-4 font-weight-bold text-white pt-5 mb-2">Welcome to Stutor</h2>
+
+                            <!-- Divider -->
+                            <hr class="hr-white">
+
+                            <!-- Description -->
+                            <h3 class="font-weight-normal text-info my-3">Predict Students Peformance</h3>
+                            <h4 class="font-italic text-white my-4">Anyday, Anytime, Anywhere!</h4>
+                            <a role="button" class="btn btn-info btn-lg" href="{% url 'signup' %}">Predict</a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        
+
+        <!--/.Mask-->
+    </body>
+
 {% endblock %}
